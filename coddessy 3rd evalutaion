@@ -1,0 +1,85 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define NUM_CANDIDATES 6
+#define CURRENT_YEAR 2025
+
+int get_age(char dob[]) {
+    int year;
+    sscanf(dob, "%4d", &year);
+    return CURRENT_YEAR - year;
+}
+
+int main() {
+    char group_name[50];
+    char candidates[NUM_CANDIDATES][11][100]; // 6 candidates, 11 fields each
+    char dob_no_slash[20];
+    int i, j, k;
+
+    // Get audition group name
+    printf("Enter the audition group name: ");
+    fgets(group_name, sizeof(group_name), stdin);
+    group_name[strcspn(group_name, "\n")] = '\0'; // remove newline
+
+    printf("\n####################################\n");
+    printf("[%s] Audition Candidate Data Entry\n", group_name);
+    printf("####################################\n");
+
+    i = 0;
+    while (i < NUM_CANDIDATES) {
+        printf("Candidate #%d\n", i + 1);
+        printf("1. Name: "); fgets(candidates[i][0], 100, stdin);
+        printf("2. Date of Birth (YYYY/MM/DD): "); fgets(candidates[i][1], 100, stdin);
+        printf("3. Gender (F/M): "); fgets(candidates[i][2], 100, stdin);
+        printf("4. Email: "); fgets(candidates[i][3], 100, stdin);
+        printf("5. Nationality: "); fgets(candidates[i][4], 100, stdin);
+        printf("6. BMI: "); fgets(candidates[i][5], 100, stdin);
+        printf("7. Primary Skill: "); fgets(candidates[i][6], 100, stdin);
+        printf("8. Secondary Skill: "); fgets(candidates[i][7], 100, stdin);
+        printf("9. Korean Proficiency (TOPIK): "); fgets(candidates[i][8], 100, stdin);
+        printf("10. MBTI: "); fgets(candidates[i][9], 100, stdin);
+        printf("11. Introduction: "); fgets(candidates[i][10], 100, stdin);
+
+        // Remove newlines from all fields
+        for (j = 0; j < 11; j++)
+            candidates[i][j][strcspn(candidates[i][j], "\n")] = '\0';
+
+        printf("---------------------------------\n");
+        i++;
+    }
+
+    // Display data
+    printf("\n####################################\n");
+    printf("[%s] Audition Candidate Data Review\n", group_name);
+    printf("####################################\n");
+    printf("=============================================================================================\n");
+    printf("Name (Age)       | DOB      | Gender | Email               | Nationality  | BMI  | Primary | Secondary | TOPIK  | MBTI |\n");
+    printf("=============================================================================================\n");
+
+    for (i = 0; i < NUM_CANDIDATES; i++) {
+        // Remove '/' from DOB
+        k = 0;
+        for (j = 0; candidates[i][1][j] != '\0'; j++)
+            if (candidates[i][1][j] != '/') dob_no_slash[k++] = candidates[i][1][j];
+        dob_no_slash[k] = '\0';
+
+        int age = get_age(dob_no_slash);
+
+        printf("%-14s (%d) | %-8s | %-6s | %-20s | %-12s | %-4s | %-8s | %-9s | ",
+            candidates[i][0], age, dob_no_slash, candidates[i][2], candidates[i][3],
+            candidates[i][4], candidates[i][5], candidates[i][6], candidates[i][7]);
+
+        if (atoi(candidates[i][8]) == 0)
+            printf("Native | ");
+        else
+            printf("%-6s | ", candidates[i][8]);
+
+        printf("%-4s |\n", candidates[i][9]);
+
+        printf("---------------------------------------------------------------------------------------------\n");
+        printf("%s\n", candidates[i][10]);
+        printf("---------------------------------------------------------------------------------------------\n");
+    }
+
+    return 0;
+}
