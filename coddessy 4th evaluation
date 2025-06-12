@@ -1,0 +1,97 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_JUDGES 100
+#define MAX_INPUT 300
+#define REQUIRED_FIELDS 7
+
+// Function to count commas for validation
+int count_commas(char *str) {
+    int count = 0;
+    while (*str) {
+        if (*str == ',') count++;
+        str++;
+    }
+    return count;
+}
+
+int main() {
+    char project[50];
+    int total_judges, selected_members;
+    char judges_array[MAX_JUDGES][MAX_INPUT];
+    int i = 0;
+    char answer;
+
+    printf("####################################\n");
+    printf("#      Judge List Data Entry       #\n");
+    printf("####################################\n");
+
+    printf("Participating Project: ");
+    fgets(project, sizeof(project), stdin);
+    project[strcspn(project, "\n")] = '\0';  // Remove newline
+
+    printf("Total Number of Judges: ");
+    scanf("%d", &total_judges);
+
+    printf("Number of Selected Members: ");
+    scanf("%d", &selected_members);
+    getchar(); // to consume leftover newline
+
+    printf("++++++++++++++++++++++++++++++++++++\n");
+    printf("Starting to input information for %d judges.\n", total_judges);
+    printf("++++++++++++++++++++++++++++++++++++\n");
+
+    // Infinite loop until required number of judges are input
+    while (i < total_judges) {
+        printf("Judge %d (Enter data in format: Name,Gender,Affiliation,Title,Specialty,Email,Phone):\n", i + 1);
+        fgets(judges_array[i], MAX_INPUT, stdin);
+        judges_array[i][strcspn(judges_array[i], "\n")] = '\0';
+
+        if (count_commas(judges_array[i]) != REQUIRED_FIELDS - 1) {
+            printf("The input items are incorrect. Please enter them again.\n");
+            continue;
+        }
+
+        i++;
+    }
+
+    printf("++++++++++++++++++++++++++++++++++++\n");
+    printf("Judge information entry is complete.\n");
+    printf("++++++++++++++++++++++++++++++++++++\n");
+
+    printf("\"Should we check the judge information?\" (Y/N): ");
+    scanf(" %c", &answer);
+
+    if (answer == 'Y') {
+        printf("####################################\n");
+        printf("#        Display Judge Data        #\n");
+        printf("####################################\n");
+
+        for (i = 0; i < total_judges; i++) {
+            char *token;
+            int field_num = 0;
+            printf("[Judge %d]\n", i + 1);
+
+            token = strtok(judges_array[i], ",");
+            while (token != NULL) {
+                switch (field_num) {
+                    case 0: printf("Name: %s\n", token); break;
+                    case 1: printf("Gender: %s\n", token); break;
+                    case 2: printf("Affiliation: %s\n", token); break;
+                    case 3: printf("Title: %s\n", token); break;
+                    case 4: printf("Expertise: %s\n", token); break;
+                    case 5: printf("Email: %s\n", token); break;
+                    case 6: printf("Phone: %s\n", token); break;
+                }
+                token = strtok(NULL, ",");
+                field_num++;
+            }
+            printf("-----------------------------------\n");
+        }
+    } else {
+        printf("Program terminated.\n");
+    }
+
+    return 0;
+}
