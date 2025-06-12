@@ -1,0 +1,75 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Function to pause for 3 seconds (works on most platforms)
+void wait_3_seconds() {
+    for (volatile long i = 0; i < 300000000; i++); // Simple delay loop
+}
+
+// Function to clear the screen depending on OS
+void clear_screen() {
+#ifdef _WIN32
+    system("cls");  // For Windows
+#else
+    system("clear"); // For Mac/Linux
+#endif
+}
+
+int main() {
+    char date[20]; // Buffer to store the date input
+    char name[50]; // Buffer to store the name input
+    int i, j;
+
+    printf("[Please enter the current date in the \"yyyy-mm-dd\" format]: ");
+    scanf("%19s", date);
+
+    printf("[Please enter your name]: ");
+    scanf(" %[^\n]", name); // This allows spaces in names
+
+    printf("**The input has been processed successfully.**\n");
+
+    // Wait 3 seconds
+    wait_3_seconds();
+
+    // Clear screen after waiting
+    clear_screen();
+
+    // Splash screen starts
+    printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+
+    // Print the right-angled triangle on the left
+    for (i = 1; i <= 5; i++) {
+        for (j = 1; j <= i; j++) {
+            printf("*");
+        }
+
+        // Print the splash content
+        if (i == 2) {
+            printf("\t\t\t\t[Magrathea ver 0.1]");
+        } else if (i == 3) {
+            printf("   Magrathea, where a shining planet is created in a wasteland with no grass,");
+        } else if (i == 4) {
+            printf("   a place where unseen potential is discovered and gems are polished by the hands of experts,");
+        } else if (i == 5) {
+            printf("\tWelcome to Magrathea.");
+        }
+
+        // Print the inverted triangle on the right
+        for (j = 5; j >= i; j--) {
+            printf(" ");
+        }
+        for (j = 5; j >= i; j--) {
+            printf("*");
+        }
+
+        printf("\n");
+    }
+
+    printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+
+    // Print user and date info
+    printf("[User]: %s\t\t\t\t\t[Execution Time]: %s\n", name, date);
+    printf("=============================================================================================================\n");
+
+    return 0;
+}
