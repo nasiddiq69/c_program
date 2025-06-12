@@ -1,0 +1,73 @@
+#include <stdio.h>
+
+void print_binary(unsigned int num) {
+    for (int i = 31; i >= 0; i--) {
+        printf("%d", (num >> i) & 1);
+        if (i % 8 == 0 && i != 0) printf(" "); // space after each byte
+    }
+    printf("(2) years");
+}
+
+int main() {
+    printf("[Magrathea] ❤❤ Project Member Introduction ❤❤\n");
+    printf("=====================================================================\n");
+
+    // Arthur Dent
+    printf("Name\t\t| Arthur Dent\t\tGender\t\t| Male\n");
+    printf("Major\t\t| Mechanical Engineering\tExperience\t| ");
+    print_binary(15); printf("\n");
+    printf("Role\t\t| Architect\t\tSkills\t\t| C/C++, Java, Spring, Python, Machine Learning/Deep Learning\n");
+    printf("---------------------------------------------------------------------\n");
+    printf("Introduction\t| I built my career working on various projects in SNS, fintech, HR, and media in Silicon Valley.\n");
+    printf("\t\t  Through successes and failures, I have gained insights I want to share with you.\n");
+    printf("=====================================================================\n");
+
+    // Kim Youngjin
+    printf("Name\t\t| Kim Youngjin\t\tGender\t\t| Male\n");
+    printf("Major\t\t| Computer Engineering\tExperience\t| ");
+    print_binary(2); printf("\n");
+    printf("Role\t\t| Developer\t\tSkills\t\t| C#, Python, JavaScript, React, Kotlin\n");
+    printf("---------------------------------------------------------------------\n");
+    printf("Introduction\t| Recently, I found immense passion for software development through a personal asset management project using the MAUI framework.\n");
+    printf("\t\t  Solving real-world problems with my code is incredible!\n");
+    printf("\t\t  Successfully developing Magrathea has now become one of my bucket list goals.\n");
+    printf("=====================================================================\n");
+
+    // Im Woncheol
+    printf("Name\t\t| Im Woncheol\t\tGender\t\t| Male\n");
+    printf("Major\t\t| Electronic Engineering\tExperience\t| ");
+    print_binary(1); printf("\n");
+    printf("Role\t\t| DBA\t\t\tSkills\t\t| Java, PHP, MongoDB, MS SQL, MySQL\n");
+    printf("---------------------------------------------------------------------\n");
+    printf("Introduction\t| I believe that applications are ultimately about how they handle data.\n");
+    printf("\t\t  While studying Big Data courses in university, I developed a deep interest in data platforms.\n");
+    printf("\t\t  I think the success of this project depends on data.\n");
+    printf("\t\t  Just thinking about the data we’ll manage in Magrathea already excites me!\n");
+    printf("=====================================================================\n");
+
+    // Yoo Goeun
+    printf("Name\t\t| Yoo Goeun\t\tGender\t\t| Female\n");
+    printf("Major\t\t| Management Information Systems\tExperience\t| ");
+    print_binary(1); printf("\n");
+    printf("Role\t\t| Cloud Engineer\tSkills\t\t| Java, PowerShell, Azure, AWS, GCP\n");
+    printf("---------------------------------------------------------------------\n");
+    printf("Introduction\t| I worked on a project with Kim Youngjin, where I was responsible for implementing cloud architecture.\n");
+    printf("\t\t  During my school years, I became fascinated with cloud computing, particularly Microsoft Azure.\n");
+    printf("\t\t  As I delved deeper, I found that understanding other public cloud platforms became much easier.\n");
+    printf("\t\t  I am determined to complete Magrathea's cloud architecture with my own hands!\n");
+    printf("=====================================================================\n");
+
+    // Seo Hyekyung
+    printf("Name\t\t| Seo Hyekyung\t\tGender\t\t| Female\n");
+    printf("Major\t\t| Political Science & International Relations\tExperience\t| ");
+    print_binary(0); printf("\n");
+    printf("Role\t\t| Developer\t\tSkills\t\t| Python, Swift, Kotlin, Node.js, Figma\n");
+    printf("---------------------------------------------------------------------\n");
+    printf("Introduction\t| While I have worked on many projects as academic assignments, this is my first real-world project where a company's success is at stake.\n");
+    printf("\t\t  I am both excited and nervous about whether I can perform well.\n");
+    printf("\t\t  When I first heard about the Magrathea project, something inside me told me that this was a project worth dedicating myself to.\n");
+    printf("\t\t  Having already heard of Arthur’s reputation through LinkedIn, I feel honored to be part of this journey.\n");
+    printf("=====================================================================\n");
+
+    return 0;
+}
